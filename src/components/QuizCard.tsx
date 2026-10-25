@@ -64,14 +64,16 @@ export const QuizCard: React.FC<QuizCardProps> = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question }),
       });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       const data = await res.json();
       if (data.explanation) {
         setAiExplanation(data.explanation);
         setShowExplanation(true);
       }
-    } catch (e) {
-      console.error(e);
-      setAiExplanation(question.explanation || 'Không thể kết nối đến gia sư AI lúc này.');
+    } catch {
+      setAiExplanation(question.explanation || 'Giải thích chi tiết cho câu hỏi này đang ở chế độ ngoại tuyến (Offline).');
       setShowExplanation(true);
     } finally {
       setAiLoading(false);

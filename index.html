@@ -12,9 +12,47 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      window.__loadStandaloneFallback = function () {
+        if (window.__TIN12_APP_MOUNTED__ || window.__TIN12_FALLBACK_LOADING__) return;
+        var root = document.getElementById('root');
+        if (root && root.children.length > 0) return;
+        window.__TIN12_FALLBACK_LOADING__ = true;
+
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = './public/standalone/app.css';
+        css.onerror = function () {
+          var altCss = document.createElement('link');
+          altCss.rel = 'stylesheet';
+          altCss.href = './standalone/app.css';
+          document.head.appendChild(altCss);
+        };
+        document.head.appendChild(css);
+
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = './public/standalone/app.js';
+        script.onerror = function () {
+          var altScript = document.createElement('script');
+          altScript.type = 'module';
+          altScript.src = './standalone/app.js';
+          document.body.appendChild(altScript);
+        };
+        document.body.appendChild(script);
+      };
+
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          if (!window.__TIN12_APP_MOUNTED__) {
+            window.__loadStandaloneFallback();
+          }
+        }, 1800);
+      });
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen selection:bg-indigo-500 selection:text-white">
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="./src/main.tsx" onerror="window.__loadStandaloneFallback()"></script>
   </body>
 </html>
