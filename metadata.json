@@ -1,0 +1,6 @@
+{
+  "name": "Ôn Trắc Nghiệm Tin Học 12 - HTML & Web",
+  "description": "Nền tảng ôn thi trắc nghiệm Tin học 12 bài 7-10 (HTML, CSS, Bảng, Liên kết) dựa trên đề cương PDF. Tự động chuyển đổi văn bản tạo đề thi, luyện tập bấm giờ, và bảng điều khiển phân tích kết quả học tập cá nhân hóa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
